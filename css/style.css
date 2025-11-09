@@ -1,0 +1,79 @@
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 20px;
+    background-color: #eaf4ff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    background: white;
+}
+
+.title {
+  margin: 0;          
+  text-align: center;      
+  flex-grow: 1;             
+  color: #007bff;     
+}
+
+.bg-dark-blue {
+    background-color: #eaf4ff;
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center; 
+    align-items: center;   
+    height: 100vh;       
+    background-color: #e6f0ff; 
+}
+
+.form-wrapper .container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+.admin-view-btn {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-left: 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    border-color: #7087d9;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.admin-view-btn:hover {
+    background-color: #7087d9;
+}
+
+.admin-links {
+    max-width: 300px;
+    margin: 0 auto;
+    padding-left: 0;
+}
+
+.admin-links .btn {
+    width: 100%;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+}
+
+.admin-links .btn-primary:hover {
+    background-color: #1a5276;
+}
+
+.admin-links .btn-success:hover {
+    background-color: #196f3d;
+}
