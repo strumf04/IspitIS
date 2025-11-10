@@ -13,7 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		trim($_POST['naziv']),
 		trim($_POST['opis']),
 		floatval($_POST['cena']), 
-		trim($_POST['kategorija']),
+		intval($_POST['kategorija_id']),
+		$kolicina = $_POST['kolicina'],
 		$_FILES['slika']
 	);
 }
@@ -45,8 +46,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		</div>
 		<div class="mb-3">
 			<label class="form-label">Kategorija</label>
-			<input type="text" name="kategorija" class="form-control" required>
+			<select name="kategorija_id" class="form-control" required>
+				<?php
+				require_once __DIR__ . '/../includes/db.php';
+				
+				$kategorije = $conn->query("SELECT * FROM kategorija");
+				while ($k = $kategorije->fetch_assoc()) {
+					$selected = ($proizvod['kategorija_id'] == $k['kategorija_id']) ? 'selected' : '';
+					echo "<option value='{$k['kategorija_id']}' $selected>{$k['naziv']}</option>";
+				}
+				?>
+			</select>
 		</div>
+		<div class="form-group">
+			<label for="kolicina">Količina:</label>
+			<input type="number" name="kolicina" id="kolicina" class="form-control" required>
+	</div>
+
 		<div class="mb-3">
 			<label class="form-label">Slika</label>
 			<input type="file" name="slika" class="form-control" required>

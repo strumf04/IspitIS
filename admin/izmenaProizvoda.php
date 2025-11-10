@@ -19,14 +19,16 @@ if (!$proizvod) {
 
 $poruka = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $kolicina = (int)$_POST['kolicina'];
+
     $poruka = updateProduct(
-        $prozivod_id,
-        trim($_POST['naziv']),
-        trim($_POST['opis']),
-        floatval($_POST['cena']),
-        trim($_POST['kategorija']),
-        $_FILES['slika']
-    );
+    $prozivod_id,
+    trim($_POST['naziv']),
+    trim($_POST['opis']),
+    floatval($_POST['cena']),
+    $kolicina,
+    $_FILES['slika']
+);
     $proizvod = getProductById($prozivod_id);
 }
 ?>
@@ -56,9 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label class="form-label">Cena</label>
             <input type="number" name="cena" step="0.01" class="form-control" value="<?= htmlspecialchars($proizvod['cena']) ?>" required>
         </div>
-        <div class="mb-3">
-            <label class="form-label">Kategorija</label>
-            <input type="text" name="kategorija" class="form-control" value="<?= htmlspecialchars($proizvod['kategorija']) ?>" required>
+        <div class="form-group">
+            <label for="kolicina">Količina:</label>
+            <input type="number" name="kolicina" id="kolicina" class="form-control" required
+                value="<?= htmlspecialchars($proizvod['kolicina']) ?>">
         </div>
         <div class="mb-3">
             <label class="form-label">Trenutna slika</label><br>
@@ -74,6 +77,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <button type="submit" class="btn btn-success">Sačuvaj izmene</button>
         <a href="prikazKnjiga.php" class="btn btn-secondary">Nazad</a>
+
+        <a href="../home.php" class="btn btn-secondary">Nazad na početnu</a>
+
     </form>
 </body>
 </html>

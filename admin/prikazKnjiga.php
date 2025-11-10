@@ -20,8 +20,10 @@ $result = $conn->query($sql);
 <body class="container mt-5">
 
     <h2 class="mb-4">Sve knjige</h2>
-    <a href="dodajProizvod.php" class="btn btn-primary mb-3">Dodaj novu knjigu</a>
-
+    <div class="d-flex justify-content-between mb-3">
+        <a href="dodajProizvod.php" class="btn btn-primary">Dodaj novu knjigu</a>
+        <a href="../home.php" class="btn btn-secondary">Nazad na početnu</a>
+    </div>
     <?php if ($result->num_rows === 0): ?>
         <p>Nema nijedne knjige u bazi.</p>
     <?php else: ?>

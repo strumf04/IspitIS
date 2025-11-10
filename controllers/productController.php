@@ -1,10 +1,10 @@
 <?php
 require_once __DIR__ . '/../includes/db.php';
 
-function addProduct($naziv, $opis, $cena, $kategorija, $file) {
+function addProduct($naziv, $opis, $cena, $kategorija_id, $kolicina, $file) {
     global $conn;
 
-    if (empty($naziv) || empty($opis) || empty($cena) || empty($kategorija)) {
+    if (empty($naziv) || empty($opis) || empty($cena) || empty($kategorija_id) || empty($kolicina)) {
         return "Sva polja su obavezna.";
     }
 
@@ -18,9 +18,10 @@ function addProduct($naziv, $opis, $cena, $kategorija, $file) {
         if (move_uploaded_file($file['tmp_name'], $targetFile)) {
             $putanjaSlike = 'source/' . $imeFajla;
             $stmt = $conn->prepare(
-                "INSERT INTO proizvod (naziv, opis, cena, kategorija, slika) VALUES (?, ?, ?, ?, ?)"
+                "INSERT INTO proizvod (naziv, opis, cena, kategorija_id, kolicina, slika)
+                 VALUES (?, ?, ?, ?, ?, ?)"
             );
-            $stmt->bind_param("ssdss", $naziv, $opis, $cena, $kategorija, $putanjaSlike);
+            $stmt->bind_param("ssdis", $naziv, $opis, $cena, $kategorija_id, $kolicina, $putanjaSlike);
             if ($stmt->execute()) {
                 $stmt->close();
                 return "Proizvod uspešno dodat.";
@@ -37,7 +38,7 @@ function addProduct($naziv, $opis, $cena, $kategorija, $file) {
 }
 
 
-function updateProduct($id, $naziv, $opis, $cena, $kategorija, $file = null) {
+function updateProduct($id, $naziv, $opis, $cena, $kolicina, $file = null) {
     global $conn;
     $putanjaSlike = null;
 
@@ -57,14 +58,18 @@ function updateProduct($id, $naziv, $opis, $cena, $kategorija, $file = null) {
 
     if ($putanjaSlike) {
         $stmt = $conn->prepare(
-            "UPDATE proizvod SET naziv=?, opis=?, cena=?, kategorija=?, slika=? WHERE prozivod_id=?"
+            "UPDATE proizvod 
+             SET naziv=?, opis=?, cena=?, kolicina=?, slika=? 
+             WHERE prozivod_id=?"
         );
-        $stmt->bind_param("ssdssi", $naziv, $opis, $cena, $kategorija, $putanjaSlike, $id);
+        $stmt->bind_param("ssdisi", $naziv, $opis, $cena, $kolicina, $putanjaSlike, $id);
     } else {
         $stmt = $conn->prepare(
-            "UPDATE proizvod SET naziv=?, opis=?, cena=?, kategorija=? WHERE prozivod_id=?"
+            "UPDATE proizvod 
+             SET naziv=?, opis=?, cena=?, kolicina=? 
+             WHERE prozivod_id=?"
         );
-        $stmt->bind_param("ssdsi", $naziv, $opis, $cena, $kategorija, $id);
+        $stmt->bind_param("ssdii", $naziv, $opis, $cena, $kolicina, $id);
     }
 
     if ($stmt->execute()) {
