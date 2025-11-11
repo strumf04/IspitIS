@@ -20,6 +20,7 @@ if (!isset($_SESSION['uloga']) || $_SESSION['uloga'] !== 'admin') {
     <ul class="admin-links list-unstyled">
         <li><a href="dodajProizvod.php" class="btn btn-primary mb-2">Dodaj novu knjigu</a></li>
         <li><a href="prikazKnjiga.php" class="btn btn-success mb-2">Prikaži sve knjige</a></li>
+        <li><a href="statistika.php" class="btn btn-secondary mb-2">Statisticki prikaz</a></li>
     </ul>
 </body>
 </html>
