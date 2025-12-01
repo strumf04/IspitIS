@@ -21,7 +21,7 @@ function addProduct($naziv, $opis, $cena, $kategorija_id, $kolicina, $file) {
                 "INSERT INTO proizvod (naziv, opis, cena, kategorija_id, kolicina, slika)
                  VALUES (?, ?, ?, ?, ?, ?)"
             );
-            $stmt->bind_param("ssdis", $naziv, $opis, $cena, $kategorija_id, $kolicina, $putanjaSlike);
+            $stmt->bind_param("ssdiis", $naziv, $opis, $cena, $kategorija_id, $kolicina, $putanjaSlike);
             if ($stmt->execute()) {
                 $stmt->close();
                 return "Proizvod uspešno dodat.";
