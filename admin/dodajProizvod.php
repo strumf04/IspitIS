@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$poruka = addProduct(
 		trim($_POST['naziv']),
 		trim($_POST['opis']),
-		floatval($_POST['cena']), 
-		intval($_POST['kategorija_id']),
-		$kolicina = $_POST['kolicina'],
+		floatval($_POST['cena']),
+		intval($_POST['kategorija_id']), 
+		intval($_POST['kolicina']),       
 		$_FILES['slika']
 	);
 }

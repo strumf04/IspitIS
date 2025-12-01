@@ -21,7 +21,7 @@ if (!isset($_SESSION['uloga']) || $_SESSION['uloga'] !== 'admin') {
         <li><a href="dodajProizvod.php" class="btn btn-primary mb-2">Dodaj novu knjigu</a></li>
         <li><a href="prikazKnjiga.php" class="btn btn-success mb-2">Prikaži sve knjige</a></li>
         <li><a href="statistika.php" class="btn btn-secondary mb-2">Statisticki prikaz</a></li>
-        <li><a href="piePregled.php" class="btn btn-secondary mb-2">Pie prikaz</a></li>
+        <li><a href="../home.php" class="btn btn-secondary mb-2">Home page</a></li>
     </ul>
 </body>
 </html>

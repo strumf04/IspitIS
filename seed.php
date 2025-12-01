@@ -8,10 +8,14 @@ $faker = Faker\Factory::create();
 
     /////BRISANJE SVEGA IZ TABELA////////
 
+
 $conn->query("SET FOREIGN_KEY_CHECKS = 0"); 
 $conn->query("TRUNCATE TABLE korpa");
 $conn->query("TRUNCATE TABLE proizvod");
 $conn->query("SET FOREIGN_KEY_CHECKS = 1"); 
+
+$conn->query("DELETE FROM korisnik WHERE korisnik_id != 7");
+$conn->query("ALTER TABLE korisnik AUTO_INCREMENT = 8");
 
 
 $autori = [
